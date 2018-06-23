@@ -1,10 +1,9 @@
 
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-
+require 'rails_helper'
 
 RSpec.describe Affiliate, type: :model do
   before(:each) do
-    @affilate_hash = {
+    @affiliate_hash = {
       :name => 'TestAffiliate',
       :sale_price => '100',
       :type => Affiliate.affiliate
@@ -14,11 +13,11 @@ RSpec.describe Affiliate, type: :model do
   subject(:affiliate) { Affiliate.new @affiliate_hash }
   
   it "should be an Affiliate" do
-    expect(affiliate).to be_a(Affiliate)
+    expect(subject).to be_a(Affiliate)
   end
   
   it "should be named TestAffiliate" do
-    expect(affiliate.name).to eql(@affiliate_hash[:name]);
+    expect(subject.name).to eql(@affiliate_hash[:name]);
   end
 
 end
