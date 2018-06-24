@@ -1,7 +1,7 @@
 
 class Company
   
-  @@seller      = 'seller'
+  @@seller      = 'direct'
   @@reseller    = 'reseller'
   @@affiliate   = 'affiliate'
   
