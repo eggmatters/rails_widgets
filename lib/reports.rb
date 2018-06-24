@@ -3,7 +3,7 @@ module Reports
 
   class ReportRow
     attr_accessor :units_sold
-    attr_accessor :company
+    attr_accessor :company_type
     attr_accessor :net_sales
     attr_accessor :total_cost
     attr_accessor :profit_earned
@@ -17,6 +17,7 @@ module Reports
       reportRow.net_sales = reportRow.units_sold * company.sale_price
       reportRow.total_cost = company.total_cost(reportRow.units_sold)
       reportRow.profit_earned = reportRow.net_sales - reportRow.total_cost
+      reportRow.company_type = company.type
     end
     
     orders_report[:report]
