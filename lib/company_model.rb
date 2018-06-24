@@ -18,6 +18,10 @@ class Company
     end
   end
   
+  def total_cost num_orders
+    return 0
+  end
+  
   def self.seller
     return @@seller
   end

@@ -2,12 +2,24 @@
 module Reports
 
   class ReportRow
-    attr_accessor :unitsSold
-    attr_accessor :companyType
+    attr_accessor :units_sold
+    attr_accessor :company
+    attr_accessor :net_sales
+    attr_accessor :total_cost
+    attr_accessor :profit_earned
   end
   
   def Reports.generate_report
+    orders_report = self.generate_orders
     
+    orders_report[:report].each do | companyName, reportRow |
+      company = @companyNameLookup[companyName]
+      reportRow.net_sales = reportRow.units_sold * company.sale_price
+      reportRow.total_cost = company.total_cost(reportRow.units_sold)
+      reportRow.profit_earned = reportRow.net_sales - reportRow.total_cost
+    end
+    
+    orders_report[:report]
   end
     
   def Reports.generate_orders
@@ -24,9 +36,12 @@ module Reports
       orders.push(order)
       if report[order.company.name].nil?
         report[order.company.name] = ReportRow.new()
+        report[order.company.name].units_sold = 0
       end
-      report[order.company.name].unitsSold += order.widgets_sold
+      
+      report[order.company.name].units_sold = report[order.company.name].units_sold + order.widgets_sold
     end
+    
     {:orders => orders, :report => report}
   end
 
@@ -73,6 +88,15 @@ module Reports
     4 => @affiliateC,
     5 => @resellerA,
     6 => @resellerB
+  }
+  
+  @companyNameLookup = {
+    @widgetsInc.name => @widgetsInc,
+    @affiliateA.name => @affiliateA,
+    @affiliateB.name => @affiliateB,
+    @affiliateC.name => @affiliateC,
+    @resellerA.name  => @resellerA,
+    @resellerB.name  => @resellerB
   }
 end
 
