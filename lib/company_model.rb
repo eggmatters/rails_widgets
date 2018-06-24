@@ -1,7 +1,7 @@
 
 class Company
   
-  @@company     = 'company'
+  @@seller      = 'seller'
   @@reseller    = 'reseller'
   @@affiliate   = 'affiliate'
   
@@ -10,7 +10,6 @@ class Company
   attr_accessor :type
   
   def initialize options
-    puts(options)
     if options.respond_to? :each
       options.each do |key,val|
         target = "#{key}=".to_sym
@@ -19,8 +18,8 @@ class Company
     end
   end
   
-  def self.company
-    return @@company
+  def self.seller
+    return @@seller
   end
   
   def self.reseller

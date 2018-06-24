@@ -1,0 +1,4 @@
+
+class Seller < Company
+  
+end

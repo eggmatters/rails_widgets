@@ -7,7 +7,6 @@ class Order
   attr_accessor :amount_paid
   
   def initialize options
-    puts(options)
     if options.respond_to? :each
       options.each do |key,val|
         target = "#{key}=".to_sym

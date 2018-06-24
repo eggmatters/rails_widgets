@@ -1,4 +1,3 @@
-
 require 'rails_helper'
 
 RSpec.describe Reseller, type: :model do
@@ -10,7 +9,7 @@ RSpec.describe Reseller, type: :model do
     }
   end
   
-  subject(:affiliate) { Reseller.new @reseller_hash }
+  subject(:reseller) { Reseller.new @reseller_hash }
   
   it "should be an Reseller" do
     expect(subject).to be_a(Reseller)
